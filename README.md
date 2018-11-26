@@ -1,9 +1,11 @@
 # Time Delays
 
-Time Delays is a digital installation. It has been developed and first displayed in June 2015 by Robin Lamarche-Perrin and Bruno Pace for the [eponymous dance festival](http://www.movingcells.org), in Leipzig.
+Time Delays is a video installation offering an altered mirror of space and time. It has been developed by [Robin Lamarche-Perrin](https://www-complexnetworks.lip6.fr/~lamarche/) and [Bruno Pace](https://de.linkedin.com/in/bruno-pace) for [In the Dark](http://www.movingcells.org), a contemporary art exhibition which took place in Leipzig during the month of October 2015.
 
+Here is an example of use of this installation with the [Compagnie 121](http://cie121.com/) at [EP7](https://ep7.paris/) in April 2018:
+https://www.facebook.com/robin.homepage/videos/10155330632946720/
 
-## Installation on Linux
+### Installation
 
 * Install OpenCV:
 ```
@@ -21,7 +23,7 @@ cd time-delays
 g++ -Wall -O3 -pthread time-delays.cpp -o time-delays `pkg-config --cflags --libs opencv`
 ```
 
-* Run the programs:
+* Run the program:
 ```
 ./time-delays <input>
 ```
@@ -32,11 +34,11 @@ where `<input>` is an optional parameter that is either
 If not specified, the application will try to open the webcam with id `0`.
 
 
-### Control during execution
+### Control
 
 * `<Space>` to switch black screen on (or off)
 * `<Escape>` to close the application
-<br/><br/>
+<br><br/>
 
 * `0` to suppress delay
 * from `1` to `9` to set delay (from 15 frames to 135 frames, that is from 0.5 to 4.5 seconds in the case of 30fps)
@@ -51,7 +53,8 @@ If not specified, the application will try to open the webcam with id `0`.
 * `s` to activate or deactivate symmetric delay
 
 
-## License
+### License
+
 Copyright © 2015-2018 Robin Lamarche-Perrin and Bruno Pace  
 Contact: <Robin.Lamarche-Perrin@lip6.fr>
 

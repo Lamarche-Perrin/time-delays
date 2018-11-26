@@ -3,17 +3,15 @@
 /*
  * This file is part of Time Delays.
  *
- * Time Delays is is a digital installation building on a depth sensor to
- * allow spectators to interact with a cloud of particles through their movements.
- * It has been developed and first displayed in June 2015 by Robin Lamarche-Perrin
- * and Bruno Pace for the eponymous dance festival, in Leipzig.
- * See: http://www.movingcells.org
+ * Time Delays is a video installation offering an altered mirror of space and
+ * time. It has been developed by Robin Lamarche-Perrin and Bruno Pace for In
+ * the Dark, a contemporary art exhibition which took place in Leipzig during
+ * the month of October 2015.
  * 
- * The current version of the program is implemented on Kinect for Windows v2 (K4W2)
- * through the open source driver libreenect2.
- * See: https://github.com/OpenKinect/libfreenect2
+ * Sources are available on GitHub:
+ * https://github.com/Lamarche-Perrin/time-delays
  * 
- * Copyright © 2015-2017 Robin Lamarche-Perrin and Bruno Pace
+ * Copyright © 2015-2018 Robin Lamarche-Perrin and Bruno Pace
  * (<Robin.Lamarche-Perrin@lip6.fr>)
  * 
  * Time Delays is free software: you can redistribute it and/or
