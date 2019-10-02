@@ -55,10 +55,11 @@ const bool initReverse = false;
 const bool initSymmetric = false;
 const bool useSymmetric = false;
 
-unsigned int frameWidth = 1280; // 640 (cam1)   1280 (cam2)   1024 (cam3)
-unsigned int frameHeight = 720; // 360 (cam1)    720 (cam2)    768 (cam3)
+unsigned int frameWidth =  1920; // 640 (cam1)   1280 (cam2)   1024 (cam3)
+unsigned int frameHeight = 1080; // 360 (cam1)    720 (cam2)    768 (cam3)
+const float exposure = 0.05;
 
-const bool flipFrame = false;
+const bool flipFrame = true;
 
 const bool cropBorder = false;
 const double borderWidthRatio = 2.596 / 332.644;
@@ -70,8 +71,8 @@ double fadeRate = 0;
 double zoom = 1;
 
 bool cropFrame = false;
-double cropLeft = 0.15;
-double cropRight = 0;
+double cropLeft = 0.1;
+double cropRight = 0.1;
 double cropBottom = 0;
 double cropTop = 0;
 
@@ -177,6 +178,8 @@ int main (int argc, char *argv[])
 
 		cam.set (CV_CAP_PROP_FOURCC, CV_FOURCC('M','J','P','G'));
 		cam.set (CV_CAP_PROP_FPS, 60);
+		// cam.set (CV_CAP_PROP_AUTO_EXPOSURE, 0.25);
+		// cam.set (CV_CAP_PROP_EXPOSURE, exposure);
 		cam.set (CV_CAP_PROP_FRAME_WIDTH, frameWidth);
 		cam.set (CV_CAP_PROP_FRAME_HEIGHT, frameHeight);
 	}
@@ -184,7 +187,8 @@ int main (int argc, char *argv[])
     double fps = cam.get (CV_CAP_PROP_FPS);
 	double currentWidth = cam.get (CV_CAP_PROP_FRAME_WIDTH);
 	double currentHeight = cam.get (CV_CAP_PROP_FRAME_HEIGHT);
-	std::cout << "width: " << currentWidth << " pixels / height: " << currentHeight << " pixels / fps: " << fps << std::endl;
+	double exposure = cam.get (CV_CAP_PROP_EXPOSURE);
+	std::cout << "width: " << currentWidth << " pixels / height: " << currentHeight << " pixels / exposure: " << exposure << " / fps: " << fps << std::endl;
 
 	if (toFile) {
 		int codec = static_cast<int> (cam.get (CV_CAP_PROP_FOURCC));
@@ -379,7 +383,7 @@ void *displayFrame (void *arg)
 
 	if (cropFrame) {
 		const cv::Rect cropRectangle = cv::Rect (frameWidth * cropLeft, frameHeight * cropTop, frameWidth * (1 - cropLeft + cropRight), frameHeight * (1 - cropTop + cropBottom));
-		cv::Mat blackFrame = cv::Mat (frameHeight, frameWidth, CV_8UC3, cv::Scalar(0, 0, 0));
+		cv::Mat blackFrame = cv::Mat (frameHeight * (1 - cropLeft + cropRight), frameWidth * (1 - cropTop + cropBottom), CV_8UC3, cv::Scalar(0, 0, 0));
 		finalFrame (cropRectangle).copyTo (blackFrame (cropRectangle));
 		finalFrame = blackFrame;
 	}
